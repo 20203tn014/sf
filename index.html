@@ -9,6 +9,22 @@
 <body>
 
     <link rel="stylesheet" href="../sf/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+
+    <div>
+        <table id="table" style="border: 2px solid blue">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         $.ajax({
@@ -16,6 +32,12 @@
             url: 'http://localhost:80/sf/public/'
         }).done(function(res){
             console.log(res.listProducts);
+            let products = res.listProducts;
+            let table = $("#table");
+            for(let i = 0; i < products.length; i++){
+                table.append(
+                    "<tr><td>"+products[i].idproduct+"</td><td>"+products[i].name+"</td><td>"+products[i].price+"</td><td>"+products[i].status+"</td></tr>")
+            }
         });
     </script>
 
